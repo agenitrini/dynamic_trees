@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+  Structures arborescentes dynamiques
+  Copyright (C) 2024-2026 Antoine Genitrini (développeur principal)
+  Contributeurs (projet PSTL 2023-2024, Sorbonne Université) :
+    Tracy Hong, Julien Fang, Jean-Marc Zhuang, Laura Rattanavan
+  Licence : GNU GPL version 3 ou ultérieure (voir le fichier LICENSE).
+  SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visualisation — Arbres dynamiques</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%234f46e5'/%3E%3Cg fill='%23fff'%3E%3Ccircle cx='16' cy='9' r='3'/%3E%3Ccircle cx='10' cy='18' r='3'/%3E%3Ccircle cx='22' cy='18' r='3'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="viz">
+  <div class="viz-main">
+    <div class="stage-wrap">
+      <div class="controls" id="controls"></div>
+      <div class="stage">
+        <svg id="svg" role="img" aria-label="visualisation"></svg>
+        <div class="status"><div id="status"></div></div>
+        <div class="zoom" id="zoom"></div>
+      </div>
+      <div class="player" id="player"></div>
+    </div>
+    <aside class="side" id="side"></aside>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/core/scene.js"></script>
+  <script src="js/core/renderer.js"></script>
+  <script src="js/core/player.js"></script>
+  <script src="js/core/app.js"></script>
+  <script>window.__app = new DT.App(); window.__app.start();</script>
+</body>
+</html>
