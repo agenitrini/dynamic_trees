@@ -213,7 +213,7 @@
         return;
       }
       try {
-        for (const dep of ['_common'].concat(this.entry.deps || [])) await loadScript(`js/algos/${dep}.js`);
+        for (const dep of ['common'].concat(this.entry.deps || [])) await loadScript(`js/algos/${dep}.js`);
         await loadScript(`js/algos/${this.id}.js`);
       } catch (e) {
         this.setStatus(['err.load'], true);

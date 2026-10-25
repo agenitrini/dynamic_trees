@@ -59,7 +59,7 @@ function loadFile(ctx, rel) {
 /** Charge le cœur et le module id ; renvoie le contexte (ctx.DT). */
 function load(id) {
   const ctx = makeContext();
-  for (const f of ['js/i18n.js', 'js/catalog.js', 'js/core/scene.js', 'js/core/app.js', 'js/algos/_common.js']) loadFile(ctx, f);
+  for (const f of ['js/i18n.js', 'js/catalog.js', 'js/core/scene.js', 'js/core/app.js', 'js/algos/common.js']) loadFile(ctx, f);
   const entry = ctx.DT.catalog.find(id);
   for (const dep of (entry && entry.deps) || []) loadFile(ctx, `js/algos/${dep}.js`);
   loadFile(ctx, `js/algos/${id}.js`);
