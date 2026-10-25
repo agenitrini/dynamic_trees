@@ -72,7 +72,7 @@
       'err.full': 'La structure est pleine.',
       'err.toolong': 'Texte trop long (au plus {n} caractères).',
       'err.internal': 'Erreur interne : {m}',
-      'err.load': 'Impossible de charger cette visualisation.',
+      'err.load': 'Impossible de charger cette visualisation ({f}). Rechargez la page (Cmd/Ctrl + Maj + R).',
       'err.unknown': 'Structure inconnue : « {id} ».',
       'msg.cleared': 'La structure est vide.',
       'msg.empty': 'La structure est vide.',
@@ -131,7 +131,7 @@
       'err.full': 'The structure is full.',
       'err.toolong': 'Text too long (at most {n} characters).',
       'err.internal': 'Internal error: {m}',
-      'err.load': 'Unable to load this visualization.',
+      'err.load': 'Unable to load this visualization ({f}). Reload the page (Cmd/Ctrl + Shift + R).',
       'err.unknown': 'Unknown structure: “{id}”.',
       'msg.cleared': 'The structure is empty.',
       'msg.empty': 'The structure is empty.',
@@ -182,7 +182,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = src;
+      s.src = src + '?v=20261025b';
       s.onload = resolve;
       s.onerror = () => reject(new Error(src));
       document.head.appendChild(s);
@@ -216,7 +216,7 @@
         for (const dep of ['common'].concat(this.entry.deps || [])) await loadScript(`js/algos/${dep}.js`);
         await loadScript(`js/algos/${this.id}.js`);
       } catch (e) {
-        this.setStatus(['err.load'], true);
+        this.setStatus(['err.load', { f: e.message }], true);
         return;
       }
       this.Algo = DT.algos[this.id];
