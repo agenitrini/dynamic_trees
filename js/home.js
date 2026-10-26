@@ -52,7 +52,7 @@
     },
   });
 
-  DT.buildHeader({ active: 'home' });
+  DT.buildHeader({ active: 'home', page: 'index' });
 
   const root = document.getElementById('chapters');
   const tip = document.getElementById('tooltip');

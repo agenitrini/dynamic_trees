@@ -58,7 +58,7 @@
     },
   });
 
-  DT.buildHeader({ active: 'examples' });
+  DT.buildHeader({ active: 'examples', page: 'examples' });
 
   const root = document.getElementById('groups');
   const filter = document.getElementById('filter');

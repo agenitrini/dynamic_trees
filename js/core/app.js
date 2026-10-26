@@ -182,7 +182,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = src + '?v=20261025b';
+      s.src = src + '?v=20261026a';
       s.onload = resolve;
       s.onerror = () => reject(new Error(src));
       document.head.appendChild(s);
@@ -205,7 +205,7 @@
       title.className = 'viz-title';
       title.innerHTML = '<h1></h1><span class="chap"></span>';
       this.titleEl = title;
-      DT.buildHeader({ slot: title });
+      DT.buildHeader({ slot: title, page: 'viz:' + this.id });
       this.statusEl = document.getElementById('status');
 
       if (!this.entry) {

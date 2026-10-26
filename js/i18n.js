@@ -219,6 +219,7 @@
     DT.i18n.onChange(refresh);
     refresh();
     DT.i18n.apply(header);
+    if (DT.feedback) DT.feedback.mount(header, opts.page);
     return header;
   };
 })();

@@ -31,6 +31,17 @@ Raccourcis : <kbd>Espace</kbd> lecture/pause, <kbd>←</kbd> <kbd>→</kbd> pas 
 pas, <kbd>Entrée</kbd> dans un champ pour valider ; molette pour zoomer, glisser
 pour déplacer, double-clic pour recentrer.
 
+## Avis des visiteurs
+
+Chaque page porte, dans le bandeau supérieur, un pouce en l'air (« page qui
+semble cohérente avec le cours AlgAv », après confirmation) et un pouce en bas
+(formulaire décrivant le problème), avec leurs compteurs. Les votes et les
+signalements sont enregistrés par un service Google Apps Script ; le tableau de
+bord `admin.html`, protégé par mot de passe, affiche les compteurs, permet de les
+remettre à zéro et liste les signalements avec le lien vers la page. Mise en
+place : [apps-script/LISEZMOI.md](apps-script/LISEZMOI.md). Tant que
+`js/config.js` ne contient pas l'adresse du service, les boutons sont masqués.
+
 ## Structures
 
 | Chapitre | Structures (identifiant) |
