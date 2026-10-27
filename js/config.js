@@ -20,6 +20,6 @@
      * https://script.google.com/macros/s/XXXXXXXX/exec
      * Tant qu'elle est vide, les boutons d'avis ne sont pas affichés.
      */
-    feedbackUrl: '',
+    feedbackUrl: 'https://script.google.com/macros/s/AKfycbypOEewSS6S0O2r9z9BYTqisHKpZ_FyPX7IieZpbDJXxbXcLKL0P5T5AEeOZPqp2kd2/exec',
   };
 })();
