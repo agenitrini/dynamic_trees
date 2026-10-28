@@ -182,7 +182,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = src + '?v=20261028a';
+      s.src = src + '?v=20261028b';
       s.onload = resolve;
       s.onerror = () => reject(new Error(src));
       document.head.appendChild(s);
@@ -619,7 +619,7 @@
       const side = document.getElementById('side');
       side.innerHTML =
         `<div class="tabs"><button data-tab="steps" class="on" data-i18n="tab.steps"></button>` +
-        `<button data-tab="code" data-i18n="tab.code"></button>` +
+        `<button data-tab="code" data-i18n="${this.entry.site === 'polya' ? 'polya.tab.code' : 'tab.code'}"></button>` +
         `<button data-tab="info" data-i18n="tab.info"></button></div>` +
         `<div class="tab on" data-tab="steps"><ol class="log"></ol></div>` +
         `<div class="tab" data-tab="code"></div>` +
@@ -683,7 +683,7 @@
         return;
       }
       this.codeBlocks = {};
-      this.codeEl.innerHTML = `<p class="code-empty">${t('code.from')}</p>`;
+      this.codeEl.innerHTML = `<p class="code-empty">${t(this.entry.site === 'polya' ? 'polya.code.from' : 'code.from')}</p>`;
       for (const k of keys) {
         const block = code[k];
         const h = document.createElement('p');

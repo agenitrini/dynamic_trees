@@ -21,6 +21,9 @@
       'polya.site.sub': 'Génération aléatoire et squelette de Cayley',
       'nav.polya': 'Structures de Pólya',
       'nav.course': 'Cours AlgAv',
+      'polya.code.from': 'Code Python de la méthode récursive, avec les tables précalculées w[k].',
+      'code.src.polya': 'Python',
+      'polya.tab.code': 'Code Python',
     },
     en: {
       'chap.polya': 'Pólya structures',
@@ -28,6 +31,9 @@
       'polya.site.sub': 'Random sampling and Cayley skeleton',
       'nav.polya': 'Pólya structures',
       'nav.course': 'AlgAv course',
+      'polya.code.from': 'Python code of the recursive method, with the precomputed tables w[k].',
+      'code.src.polya': 'Python',
+      'polya.tab.code': 'Python code',
     },
   });
 

@@ -521,5 +521,42 @@
     schroeder: (tab, rnd) => labelledGenerator(tab, rnd, 'schroeder'),
     choose,
   };
+  PolyaTrees.code = {
+    generate: {
+      title: { fr: "Arbres de Pólya : méthode récursive, ordre « Cayley d’abord »", en: "Pólya trees: recursive method, Cayley-first order" },
+      source: 'polya',
+      lines: [
+        "import random",
+        "# w[k] = rho**k * T_k (tables précalculées) ; un arbre = liste de ses sous-arbres",
+        "",
+        "def pas_cayley_dabord(m):",
+        "    \"\"\" les pas (d, j) : d'abord j = 1 par d décroissant, puis j >= 2 \"\"\"",
+        "    for d in range(m, 0, -1):",
+        "        yield d, 1",
+        "    for d in range(m // 2, 0, -1):",
+        "        for j in range(2, m // d + 1):",
+        "            yield d, j",
+        "",
+        "def arbre_polya(n, w, rho):",
+        "    \"\"\" arbre de Pólya uniforme de taille n \"\"\"",
+        "    return foret(n - 1, w, rho)",
+        "",
+        "def foret(m, w, rho):",
+        "    \"\"\" multiensemble uniforme d'arbres de taille totale m \"\"\"",
+        "    wF = lambda k: w[k + 1] / rho     # forêts : F_k = T_(k+1)",
+        "    F = []",
+        "    while m > 0:",
+        "        u = random.random()",
+        "        for d, j in pas_cayley_dabord(m):",
+        "            u -= d * w[d] * wF(m - j*d) * rho**((j - 1)*d) / (m * wF(m))",
+        "            if u < 0: break",
+        "        s = arbre_polya(d, w, rho)",
+        "        F.extend([s] * j)     # j = 1 : squelette ; j >= 2 : décoration (j copies)",
+        "        m -= j * d",
+        "    return F"
+      ],
+    },
+  };
+
   DT.register('polya', PolyaTrees);
 })();

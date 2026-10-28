@@ -225,7 +225,7 @@
     DT.i18n.onChange(refresh);
     refresh();
     DT.i18n.apply(header);
-    if (DT.feedback) DT.feedback.mount(header, opts.page);
+    if (DT.feedback && !polya) DT.feedback.mount(header, opts.page); // pas d'avis sur le site Pólya (hors cours AlgAv)
     return header;
   };
 })();
