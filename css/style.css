@@ -838,3 +838,10 @@ kbd {
   .fb-btn { padding: 0 6px; }
   .fb-btn .n { display: none; }
 }
+
+/* Structures de Pólya : squelette de Cayley et décorations */
+.scene .n.dot.deco circle { fill: var(--hl); }
+.scene .e.deco line, .scene .e.deco path { stroke: var(--hl); }
+.scene .n.dot.fresh circle { stroke: var(--text); stroke-width: 1.6; }
+.polya-intro { max-width: 860px; margin: 0 auto 28px; color: var(--text-dim); line-height: 1.6; }
+.polya-intro b { color: var(--text); }

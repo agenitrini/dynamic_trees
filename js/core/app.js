@@ -182,7 +182,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = src + '?v=20261027a';
+      s.src = src + '?v=20261028a';
       s.onload = resolve;
       s.onerror = () => reject(new Error(src));
       document.head.appendChild(s);
@@ -205,7 +205,7 @@
       title.className = 'viz-title';
       title.innerHTML = '<h1></h1><span class="chap"></span>';
       this.titleEl = title;
-      DT.buildHeader({ slot: title, page: 'viz:' + this.id });
+      DT.buildHeader({ slot: title, page: 'viz:' + this.id, site: this.entry && this.entry.site });
       this.statusEl = document.getElementById('status');
 
       if (!this.entry) {
@@ -260,8 +260,10 @@
       const name = R(this.entry.name);
       this.titleEl.querySelector('h1').textContent = name;
       this.titleEl.querySelector('.chap').textContent =
-        t('chap.n', { n: this.entry.chapter }) + ' · ' + t('chap.' + this.entry.chapter);
-      document.title = name + ' — ' + t('site.short');
+        typeof this.entry.chapter === 'number'
+          ? t('chap.n', { n: this.entry.chapter }) + ' · ' + t('chap.' + this.entry.chapter)
+          : t('chap.' + this.entry.chapter);
+      document.title = name + ' — ' + t(this.entry.site === 'polya' ? 'polya.site' : 'site.short');
       if (this.exSelect) {
         this.exSelect.options[0].textContent = t('ctl.choose');
         (this.entry.examples || []).forEach((ex, i) => {
@@ -742,7 +744,7 @@
         html += '</div>';
       }
       html += `<p>${t('info.keys')}</p>`;
-      html += `<p><a href="examples.html#${e.id}">${t('info.examples')}</a></p>`;
+      if (!e.site) html += `<p><a href="examples.html#${e.id}">${t('info.examples')}</a></p>`;
       html += `<p class="credits">${t('info.credits')}</p>`;
       this.infoEl.innerHTML = html;
     }

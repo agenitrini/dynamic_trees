@@ -114,3 +114,18 @@ Julien Fang, Jean-Marc Zhuang, Laura Rattanavan. Voir [AUTHORS.md](AUTHORS.md).
 
 Ce programme est un logiciel libre distribué sous licence
 [GNU GPL version 3](LICENSE) ou (à votre choix) toute version ultérieure.
+
+## Site « Structures de Pólya »
+
+`polya.html` est un second site, construit avec le même moteur, qui illustre
+l'article *Full asymptotic expansions and uniform random sampling of Pólya
+structures* : `viz.html?algo=polya` (arbres de Pólya) et
+`viz.html?algo=polya_hier` (hiérarchies) tirent une structure uniforme de taille
+donnée (jusqu'à 1000) par la méthode récursive générique, dans l'ordre
+« Cayley d'abord », puis montrent le **squelette** (pas de Cayley : un
+sous-arbre greffé seul), génération par génération, et les **décorations** (pas
+de décoration : plusieurs copies identiques). Les nombres de structures sont
+stockés sous forme normalisée w_k = ρ^k T_k dans `js/algos/polya_tables.js`,
+régénéré par `python3 tools/polya_tables.py` (mpmath). Le catalogue de ce site est
+`js/polya_catalog.js`, son accueil `js/polya_home.js` ; les tests sont dans
+`tests/polya.test.js` (tables, uniformité pour les petites tailles, visualisations).

@@ -196,11 +196,17 @@
     opts = opts || {};
     const header = document.createElement('header');
     header.className = 'topbar';
+    const polya = opts.site === 'polya';
     header.innerHTML =
-      `<a class="brand" href="index.html">${LOGO}<span><span data-i18n="site.short"></span> ` +
-      `<small data-i18n="site.course"></small></span></a>` +
-      `<nav><a href="index.html" data-i18n="nav.home" class="${opts.active === 'home' ? 'active' : ''}"></a>` +
-      `<a href="examples.html" data-i18n="nav.examples" class="${opts.active === 'examples' ? 'active' : ''}"></a></nav>` +
+      (polya
+        ? `<a class="brand" href="polya.html">${LOGO}<span><span data-i18n="polya.site"></span> ` +
+          `<small data-i18n="polya.site.sub"></small></span></a>` +
+          `<nav><a href="polya.html" data-i18n="nav.polya" class="${opts.active === 'home' ? 'active' : ''}"></a>` +
+          `<a href="index.html" data-i18n="nav.course"></a></nav>`
+        : `<a class="brand" href="index.html">${LOGO}<span><span data-i18n="site.short"></span> ` +
+          `<small data-i18n="site.course"></small></span></a>` +
+          `<nav><a href="index.html" data-i18n="nav.home" class="${opts.active === 'home' ? 'active' : ''}"></a>` +
+          `<a href="examples.html" data-i18n="nav.examples" class="${opts.active === 'examples' ? 'active' : ''}"></a></nav>`) +
       `<div class="slot"></div><div class="spacer"></div>` +
       `<button class="icon-btn theme" data-i18n-title="theme.switch">${SUN_MOON}</button>` +
       `<button class="lang-toggle" data-i18n-title="lang.switch">` +
