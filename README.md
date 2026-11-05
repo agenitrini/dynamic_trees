@@ -119,7 +119,7 @@ Ce programme est un logiciel libre distribué sous licence
 
 `polya.html` est un second site, construit avec le même moteur, qui illustre
 l'article *Smooth disturbances of tree functions: full asymptotic expansions
-and random sampling of Pólya structures* : `viz.html?algo=polya` (arbres de Pólya),
+and uniform random sampling of Pólya structures* : `viz.html?algo=polya` (arbres de Pólya),
 `viz.html?algo=polya_hier` (hiérarchies) et `viz.html?algo=polya_binary`
 (arbres binaires non plans, nombres de Wedderburn–Etherington, OEIS A001190,
 taille = nombre de feuilles) tirent une structure uniforme de taille
