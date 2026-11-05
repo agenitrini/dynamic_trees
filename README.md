@@ -118,13 +118,21 @@ Ce programme est un logiciel libre distribué sous licence
 ## Site « Structures de Pólya »
 
 `polya.html` est un second site, construit avec le même moteur, qui illustre
-l'article *Full asymptotic expansions and uniform random sampling of Pólya
-structures* : `viz.html?algo=polya` (arbres de Pólya) et
-`viz.html?algo=polya_hier` (hiérarchies) tirent une structure uniforme de taille
+l'article *Smooth disturbances of tree functions: full asymptotic expansions
+and random sampling of Pólya structures* : `viz.html?algo=polya` (arbres de Pólya),
+`viz.html?algo=polya_hier` (hiérarchies) et `viz.html?algo=polya_binary`
+(arbres binaires non plans, nombres de Wedderburn–Etherington, OEIS A001190,
+taille = nombre de feuilles) tirent une structure uniforme de taille
 donnée (jusqu'à 1000) par la méthode récursive générique, dans l'ordre
 « Cayley d'abord », puis montrent le **squelette** (pas de Cayley : un
 sous-arbre greffé seul), génération par génération, et les **décorations** (pas
-de décoration : plusieurs copies identiques). Les nombres de structures sont
+de décoration : plusieurs copies identiques). Pour les arbres binaires, la
+méthode suit la forme pointée n T_n = Σ d T_d T_{n−d} + [n pair] (n/2) T_{n/2} :
+un pas de Cayley d greffe deux sous-arbres indépendants de tailles d et n − d,
+le pas de décoration (n pair, examiné en dernier) deux copies d'un même arbre
+de taille n/2. Les arbres d'identité, arbres de Cayley et partitions totales
+(`polya_identity`, `polya_cayley`, `polya_schroeder`) n'ont que des pas de
+Cayley. Les nombres de structures sont
 stockés sous forme normalisée w_k = ρ^k T_k dans `js/algos/polya_tables.js`,
 régénéré par `python3 tools/polya_tables.py` (mpmath). Le catalogue de ce site est
 `js/polya_catalog.js`, son accueil `js/polya_home.js` ; les tests sont dans

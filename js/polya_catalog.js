@@ -101,6 +101,35 @@
       ],
     },
     {
+      id: 'polya_binary',
+      chapter: 'polya',
+      site: 'polya',
+      deps: ['polya_tables', 'polya'],
+      name: { fr: 'Arbres binaires non plans', en: 'Non-plane binary trees' },
+      short: {
+        fr: 'Chaque nœud a zéro ou deux enfants, non ordonnés ; la taille est le nombre de feuilles (nombres de Wedderburn–Etherington, A001190).',
+        en: 'Every node has zero or two unordered children; the size is the number of leaves (Wedderburn–Etherington numbers, A001190).',
+      },
+      goal: {
+        fr: 'Tirer un arbre binaire non plan uniforme à n feuilles : des pas de Cayley qui greffent deux sous-arbres indépendants, et des décorations formées de deux copies identiques.',
+        en: 'Draw a uniform non-plane binary tree with n leaves: Cayley steps grafting two independent subtrees, and decorations made of two identical copies.',
+      },
+      desc: {
+        fr: 'Un <b>arbre binaire non plan</b> est une feuille ou une racine avec un multiensemble de deux arbres binaires non plans. Ses nombres (1, 1, 1, 2, 3, 6, 11, 23, 46, 98, …) sont ceux de Wedderburn–Etherington : T(z) = z + T(z)<sup>2</sup>/2 + T(z<sup>2</sup>)/2. Avec ζ(z) = z + T(z<sup>2</sup>)/2, on a T = B(ζ), où B(z) = z + B(z)<sup>2</sup>/2 joue le rôle de la fonction de Cayley.',
+        en: 'A <b>non-plane binary tree</b> is a leaf or a root with a multiset of two non-plane binary trees. Their numbers (1, 1, 1, 2, 3, 6, 11, 23, 46, 98, …) are the Wedderburn–Etherington numbers: T(z) = z + T(z)<sup>2</sup>/2 + T(z<sup>2</sup>)/2. With ζ(z) = z + T(z<sup>2</sup>)/2, we have T = B(ζ), where B(z) = z + B(z)<sup>2</sup>/2 plays the role of the Cayley function.',
+      },
+      details: {
+        fr: 'La forme pointée n T<sub>n</sub> = Σ<sub>d</sub> d T<sub>d</sub> T<sub>n−d</sub> + [n pair] (n/2) T<sub>n/2</sub> donne la méthode. Un <b>pas de Cayley</b> d (en bleu), de probabilité d T<sub>d</sub> T<sub>n−d</sub> / (n T<sub>n</sub>), crée une racine dont les enfants sont deux arbres uniformes indépendants de tailles d et n − d ; si n est pair, le <b>pas de décoration</b> (en orange), de probabilité T<sub>n/2</sub> / (2 T<sub>n</sub>), crée une racine portant deux copies identiques d’un même arbre uniforme de taille n/2. Un arbre {A, B} avec A ≠ B est atteint par d = |A| et d = |B|, de poids total n ; un arbre {A, A} par d = n/2 et par la décoration, de poids total n : la loi est uniforme. Les pas de Cayley sont examinés d’abord, par d décroissant, la décoration en dernier : en moyenne ½ n ln n choix examinés.',
+        en: 'The pointed form n T<sub>n</sub> = Σ<sub>d</sub> d T<sub>d</sub> T<sub>n−d</sub> + [n even] (n/2) T<sub>n/2</sub> gives the method. A <b>Cayley step</b> d (in blue), with probability d T<sub>d</sub> T<sub>n−d</sub> / (n T<sub>n</sub>), creates a root whose children are two independent uniform trees of sizes d and n − d; if n is even, the <b>decoration step</b> (in orange), with probability T<sub>n/2</sub> / (2 T<sub>n</sub>), creates a root carrying two identical copies of the same uniform tree of size n/2. A tree {A, B} with A ≠ B is reached by d = |A| and d = |B|, with total weight n; a tree {A, A} by d = n/2 and by the decoration, with total weight n: the distribution is uniform. The Cayley steps are scanned first, by decreasing d, the decoration last: on average ½ n ln n examined choices.',
+      },
+      costs: [[{ fr: 'Génération (choix examinés)', en: 'Sampling (examined choices)' }, '~ ½ n ln n']],
+      examples: [
+        { id: 'n10', name: { fr: 'Petit arbre (n = 10 feuilles)', en: 'Small tree (n = 10 leaves)' }, ops: gen(10) },
+        { id: 'n100', name: { fr: 'Arbre à 100 feuilles', en: 'Tree with 100 leaves' }, ops: gen(100) },
+        { id: 'n500', name: { fr: 'Arbre à 500 feuilles', en: 'Tree with 500 leaves' }, ops: gen(500) },
+      ],
+    },
+    {
       id: 'polya_identity',
       chapter: 'polya',
       site: 'polya',

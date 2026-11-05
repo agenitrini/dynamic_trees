@@ -17,7 +17,9 @@
  * décomposition T = C(zeta) : le squelette (pas de Cayley : un sous-arbre greffé
  * seul) puis les décorations (pas de décoration : j >= 2 copies identiques).
  *
- * Familles : arbres de Pólya (polya) et hiérarchies (polya_hier). Les tables
+ * Familles : arbres de Pólya (polya), hiérarchies (polya_hier) et arbres
+ * binaires non plans (polya_binary), avec décorations ; arbres d'identité,
+ * arbres de Cayley et partitions totales, sans décoration. Les tables
  * w[k] = rho^k T_k (js/algos/polya_tables.js) évitent tout calcul de grands
  * entiers ; la génération est donc uniforme aux arrondis flottants près.
  */
@@ -35,6 +37,7 @@
       'polya_identity.op.generate': 'Génération d’un arbre d’identité de taille {x}',
       'polya_cayley.op.generate': 'Génération d’un arbre de Cayley de taille {x}',
       'polya_schroeder.op.generate': 'Génération d’une partition totale de {x} éléments',
+      'polya_binary.op.generate': 'Génération d’un arbre binaire non plan à {x} feuilles',
       'polya.err.size': 'Choisissez une taille entre {a} et {b}.',
       'polya.drawn': 'Structure tirée : {n} nœuds, dont {k} dans le squelette et {g} groupes de décorations. Examinons maintenant sa construction.',
       'polya.root': 'Le squelette de Cayley commence par la racine.',
@@ -60,6 +63,7 @@
       'polya_identity.op.generate': 'Generation of an identity tree of size {x}',
       'polya_cayley.op.generate': 'Generation of a Cayley tree of size {x}',
       'polya_schroeder.op.generate': 'Generation of a total partition of {x} elements',
+      'polya_binary.op.generate': 'Generation of a non-plane binary tree with {x} leaves',
       'polya.err.size': 'Pick a size between {a} and {b}.',
       'polya.drawn': 'Random structure: {n} nodes, {k} of them in the skeleton, and {g} groups of decorations. Let us now look at its construction.',
       'polya.root': 'The Cayley skeleton starts with the root.',
@@ -235,6 +239,50 @@
   }
 
   /**
+   * Arbres binaires non plans (Wedderburn--Etherington) : taille = nombre de
+   * feuilles, T(z) = z + T(z)^2/2 + T(z^2)/2. Forme pointée :
+   *   n T_n = sum_{d=1}^{n-1} d T_d T_{n-d} + [n pair] (n/2) T_{n/2}.
+   * Pas de Cayley d (d = n - 1, ..., 1) : racine dont les enfants sont sigma
+   * (taille d) et phi (taille n - d), tirés indépendamment ; puis, si n est
+   * pair, pas de décoration : deux copies d'un même sigma de taille n/2.
+   */
+  function binaryGenerator(tab, rnd) {
+    const w = tab.w;
+    const rho = tab.rho;
+    const cost = { steps: 0, groups: 0 };
+    function tree(n) {
+      if (n === 1) return { k: [], c: 'cay' };
+      let u = rnd();
+      let d0 = 0;
+      for (let d = n - 1; d >= 1; d--) {
+        cost.steps++;
+        d0 = d;
+        if ((u -= (d * w[d] * w[n - d]) / (n * w[n])) < 0) break;
+      }
+      if (u >= 0 && n % 2 === 0) {
+        cost.steps++;
+        d0 = 0; // pas de décoration (dernier pas : aucun test nécessaire)
+      }
+      if (d0) {
+        const sigma = tree(d0);
+        const phi = tree(n - d0);
+        sigma.c = 'cay';
+        phi.c = 'cay';
+        return { k: [sigma, phi], c: 'cay' };
+      }
+      const sigma = tree(n / 2);
+      const g = ++cost.groups;
+      const kids = [sigma, clone(sigma)];
+      for (const c of kids) {
+        c.c = 'deco';
+        c.g = g;
+      }
+      return { k: kids, c: 'cay' };
+    }
+    return { tree, cost };
+  }
+
+  /**
    * Familles étiquetées (coefficients des séries exponentielles) : arbres de
    * Cayley (une racine et un ensemble d'arbres) et partitions totales (une
    * feuille, ou un ensemble d'au moins deux partitions). Seulement des pas de
@@ -400,7 +448,9 @@
         if (perG === 1) {
           const grp = batch[0];
           const j = grp.filter((i) => nodes[i].top).length;
-          this.step(['polya.deco', { j, d: Math.round(grp.length / Math.max(1, j)) }]);
+          // taille d'une copie, au sens de la famille (nœuds ou feuilles)
+          const d = this.constructor.sizeOf(grp.map((i) => nodes[i]));
+          this.step(['polya.deco', { j, d: Math.round(d / Math.max(1, j)) }]);
         } else {
           this.step(['polya.decoBatch', { m: batch.length, t: tot }]);
         }
@@ -498,6 +548,11 @@
     hier(nodes) {
       for (const x of nodes) if (x.kids.length === 1) throw new Error('nœud unaire');
     },
+    binary(nodes) {
+      for (const x of nodes) if (x.kids.length !== 0 && x.kids.length !== 2) throw new Error('nœud d’arité différente de 0 et 2');
+      const leaves = nodes.filter((x) => !x.kids.length).length;
+      if (nodes.length !== 2 * leaves - 1) throw new Error('nombre de nœuds différent de 2n − 1');
+    },
     identity(nodes) {
       const byId = new Map(nodes.map((x) => [x.id, x]));
       const memo = new Map();
@@ -517,6 +572,7 @@
     polya: polyaGenerator,
     hier: hierGenerator,
     identity: identityGenerator,
+    binary: binaryGenerator,
     cayley: (tab, rnd) => labelledGenerator(tab, rnd, 'cayley'),
     schroeder: (tab, rnd) => labelledGenerator(tab, rnd, 'schroeder'),
     choose,

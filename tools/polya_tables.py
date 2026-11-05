@@ -86,6 +86,20 @@ wS = [float(cS[k] * rs**k) if k else 0.0 for k in range(NMAX + 1)]
 wSF = [1.0, float(rs)] + [2 * wS[k] for k in range(2, NMAX + 1)]
 out['schroeder'] = {'rho': float(rs), 'w': wS, 'wF': wSF, 'tau0': float(mp.sqrt(rs) / 2)}
 
+def binary(N):
+    # arbres binaires non plans (Wedderburn-Etherington, A001190), taille = feuilles :
+    # 2 T_n = sum_{i=1}^{n-1} T_i T_{n-i} + [n pair] T_{n/2}
+    T = [0, 1]
+    for n in range(2, N + 1):
+        s = sum(T[i] * T[n - i] for i in range(1, n)) + (T[n // 2] if n % 2 == 0 else 0)
+        T.append(s // 2)
+    return T
+
+B = binary(NMAX)
+# singularité : T(rho) = 1, soit 2 rho + T(rho^2) = 1
+rb = findroot(lambda x: 2 * x + sum(mpf(B[n]) * x**(2 * n) for n in range(1, 301)) - 1, mpf('0.4027'))
+out['binary'] = {'rho': float(rb), 'w': normalised(B, rb), 'tau0': 0.5650168581994860}
+
 path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'js', 'algos', 'polya_tables.js')
 with open(path, 'w') as f:
     f.write('/*\n * Tables des structures de Pólya (générées par tools/polya_tables.py, ne pas modifier).\n'

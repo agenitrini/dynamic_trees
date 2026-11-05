@@ -182,7 +182,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = src + '?v=20261028b';
+      s.src = src + '?v=20261104a';
       s.onload = resolve;
       s.onerror = () => reject(new Error(src));
       document.head.appendChild(s);

@@ -25,11 +25,11 @@
         'Chaque visualisation tire une structure uniforme de taille donnée (jusqu’à 1000), puis montre le squelette génération par génération, ' +
         'puis les décorations. Les nombres de structures sont stockés sous forme normalisée (w<sub>k</sub> = ρ<sup>k</sup> T<sub>k</sub>) : aucun grand entier n’est calculé.',
       'polyaHome.footer':
-        'Illustration de l’article d’A. Genitrini, <i>Full asymptotic expansions and uniform random sampling of Pólya structures</i>. ' +
+        'Illustration de l’article d’A. Genitrini, <i>Smooth disturbances of tree functions: full asymptotic expansions and random sampling of Pólya structures</i>. ' +
         '© 2024-2026 Antoine Genitrini. Logiciel libre sous <a href="LICENSE">licence GNU GPL v3</a>. ' +
         'Même moteur que les <a href="index.html">visualisations du cours AlgAv</a>.',
       'polyaHome.chap': 'Familles de structures',
-      'polyaHome.chapSub': 'Des perturbations de la fonction de Cayley.',
+      'polyaHome.chapSub': 'Des perturbations lisses de fonctions d’arbres (Cayley, et binaires pour les arbres de Wedderburn–Etherington).',
     },
     en: {
       'polyaHome.title': 'Random sampling of <span class="grad">Pólya structures</span>',
@@ -43,11 +43,11 @@
         'Each visualization draws a uniform structure of a given size (up to 1000), then shows the skeleton generation by generation, ' +
         'then the decorations. The numbers of structures are stored in normalised form (w<sub>k</sub> = ρ<sup>k</sup> T<sub>k</sub>): no big integer is computed.',
       'polyaHome.footer':
-        'Illustration of the paper by A. Genitrini, <i>Full asymptotic expansions and uniform random sampling of Pólya structures</i>. ' +
+        'Illustration of the paper by A. Genitrini, <i>Smooth disturbances of tree functions: full asymptotic expansions and random sampling of Pólya structures</i>. ' +
         '© 2024-2026 Antoine Genitrini. Free software under the <a href="LICENSE">GNU GPL v3 license</a>. ' +
         'Same engine as the <a href="index.html">AlgAv course visualizations</a>.',
       'polyaHome.chap': 'Families of structures',
-      'polyaHome.chapSub': 'Perturbations of the Cayley tree function.',
+      'polyaHome.chapSub': 'Smooth disturbances of tree functions (Cayley, and binary for Wedderburn–Etherington trees).',
     },
   });
 
